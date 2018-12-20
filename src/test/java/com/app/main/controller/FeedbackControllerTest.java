@@ -62,8 +62,8 @@ public class FeedbackControllerTest {
 		.andExpect(jsonPath("userName").exists())
 		.andExpect(jsonPath("rating").exists())
 		.andExpect(jsonPath("id").value(1))
-		.andExpect(jsonPath("source").value("yash"))
-		.andExpect(jsonPath("userName").value("usr123"))
+		.andExpect(jsonPath("source").value("string"))
+		.andExpect(jsonPath("userName").value("str123"))
 		.andDo(print());
 	}	
 
