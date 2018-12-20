@@ -14,7 +14,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("isha30/feedback-service")
+        app = docker.build("kartikjalgaonkar/feedback-service")
     }
 
     stage('Push image') {
@@ -22,7 +22,7 @@ node {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://registry.hub.docker.com', 'docker_registry_server') {
+        docker.withRegistry('https://registry.hub.docker.com', 'docker_credentials') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }
@@ -32,7 +32,7 @@ node {
         sh 'minikube start'
        /* sh 'kubectl delete deployment hello-world'
         sh 'kubectl delete svc hello-world'*/
-        sh 'kubectl run feedback-service --replicas=2 --labels="run=load-balancer-example" --image=isha30/feedback-service  --port=8084'
+        sh 'kubectl run feedback-service --replicas=2 --labels="run=load-balancer-example" --image=kartikjalgaonkar/feedback-service  --port=8084'
         sleep 60
         sh 'kubectl get deployments feedback-service'
         sh 'kubectl describe deployments feedback-service'
