@@ -30,8 +30,8 @@ node {
     
     stage('kubectl deploy'){
         sh 'minikube start'
-       /* sh 'kubectl delete deployment hello-world'
-        sh 'kubectl delete svc hello-world'*/
+        sh 'kubectl delete deployment feedback-service'
+        sh 'kubectl delete svc feedback-service'
         sh 'kubectl run feedback-service --replicas=2 --labels="run=load-balancer-example" --image=kartikjalgaonkar/feedback-service  --port=8084'
         sleep 60
         sh 'kubectl get deployments feedback-service'
