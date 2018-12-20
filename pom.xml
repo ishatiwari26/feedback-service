@@ -80,5 +80,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>feedback-service</finalName>
 	</build>
 </project>
