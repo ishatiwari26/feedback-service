@@ -29,7 +29,8 @@ node {
     }
     
     stage('kubectl deploy'){
-        sh 'minikube start'
+        /*sh 'minikube start'*/
+        sh 'minikube --vm-driver=kvm start'
         /*sh 'kubectl delete deployment feedback-service'
         sh 'kubectl delete svc feedback-service'*/
         sh 'kubectl run feedback-service --replicas=2 --labels="run=load-balancer-example" --image=kartikjalgaonkar/feedback-service  --port=8084'
